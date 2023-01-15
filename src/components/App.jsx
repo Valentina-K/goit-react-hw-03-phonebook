@@ -8,7 +8,7 @@ import ContactList from './ContactList';
 
 const nanoid = customAlphabet('1234567890id-', 5);
 const LK_PHONEBOOK = 'phone_book_id';
-
+//comm
 export default class App extends Component {
   state = {
     contacts: [
