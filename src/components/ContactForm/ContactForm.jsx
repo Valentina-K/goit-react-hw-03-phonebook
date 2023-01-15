@@ -30,7 +30,6 @@ export default class ContactForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.dir(evt);
     this.props.onSubmit(this.state);
     this.reset();
   };

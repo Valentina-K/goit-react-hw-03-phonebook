@@ -7,6 +7,7 @@ import Filter from './Filter';
 import ContactList from './ContactList';
 
 const nanoid = customAlphabet('1234567890id-', 5);
+const LK_PHONEBOOK = 'phone_book_id';
 
 export default class App extends Component {
   state = {
@@ -18,7 +19,19 @@ export default class App extends Component {
     ],
     filter: '',
   };
-
+  componentDidMount() {
+    const localContacts = JSON.parse(localStorage.getItem(LK_PHONEBOOK));
+    if (localContacts !== null) {
+      this.setState({ contacts: localContacts });
+    }
+  }
+  componentDidUpdate(_, prevState) {
+    console.log('PrevState', prevState);
+    console.log('Update', this.state);
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      localStorage.setItem(LK_PHONEBOOK, JSON.stringify(this.state.contacts));
+    }
+  }
   addContact = ({ name, number }) => {
     const newContact = { id: nanoid(), name, number };
     if (this.state.contacts.some(contact => contact.name === name)) {
