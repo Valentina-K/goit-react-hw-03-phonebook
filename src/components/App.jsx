@@ -26,8 +26,6 @@ export default class App extends Component {
     }
   }
   componentDidUpdate(_, prevState) {
-    console.log('PrevState', prevState);
-    console.log('Update', this.state);
     if (prevState.contacts.length !== this.state.contacts.length) {
       localStorage.setItem(LK_PHONEBOOK, JSON.stringify(this.state.contacts));
     }
